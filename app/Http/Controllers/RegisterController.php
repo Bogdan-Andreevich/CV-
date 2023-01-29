@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Product;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,8 +33,10 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
 
             ]);
+            event(new Registered($user));
+
             Auth::login($user);
-            return redirect('/dashboard');
+            return redirect('/email/verify');
         }
     }
 }

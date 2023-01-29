@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MainPageController;
@@ -29,6 +30,16 @@ Route::get('/', function () {
     Route::get('login', [LoginController::class, 'create'])->name('login');
     Route::post('login', [LoginController::class, 'store']);
 
-    Route::get('dashboard', [MainPageController::class, 'create']);
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+
+        return redirect('dashboard');
+    })->middleware(['auth', 'signed'])->name('verification.verify');
+
+    Route::get('/email/verify', function () {
+        return view('authorization.verify-email');
+    })->middleware('auth')->name('verification.notice');
+
+    Route::get('dashboard', [MainPageController::class, 'create'])->middleware(['auth', 'verified']);
 
 
