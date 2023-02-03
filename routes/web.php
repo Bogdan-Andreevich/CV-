@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,7 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 //Route::middleware('guest')->group(function () {
@@ -30,7 +31,10 @@ Route::get('/', function () {
     Route::get('login', [LoginController::class, 'create'])->name('login');
     Route::post('login', [LoginController::class, 'store']);
 
-    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    Route::get('logout', [LogoutController::class, 'logout'])->middleware('auth');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
         $request->fulfill();
 
         return redirect('dashboard');

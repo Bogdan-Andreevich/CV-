@@ -26,6 +26,11 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
         ]);
+        if (User::where('email', $request->email)->exists()){
+            return redirect('/login')->withErrors([
+                'email' => 'A user with this email already exists.',
+            ]);
+        }
         if (isset($validator)){
             $user = User::create([
                 'name' => $request->name,
