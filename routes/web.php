@@ -17,14 +17,10 @@ use App\Http\Controllers\LogoutController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+    Route::get('/', function () {
+        return view('index');
+    });
 
-//Route::middleware('guest')->group(function () {
-//    Route::get('register', [RegisterController::class, 'create'])->name('register');
-//    Route::post('register', [RegisterController::class, 'store']);
-//});
     Route::get('register', [RegisterController::class, 'create'])->name('register');
     Route::post('register', [RegisterController::class, 'store']);
 
@@ -34,7 +30,7 @@ Route::get('/', function () {
     Route::get('logout', [LogoutController::class, 'logout'])->middleware('auth');
 
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
         $request->fulfill();
 
         return redirect('dashboard');

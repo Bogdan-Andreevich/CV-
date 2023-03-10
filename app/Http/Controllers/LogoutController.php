@@ -14,9 +14,8 @@ use Session\Middleware\AuthenticateSession;
 
 class LogoutController extends Controller
 {
-
-    public function logout(Request $request){
-        Session::remove('password_hash');
-        return redirect('login')->with(Auth::logout());
+    public function logout(){
+        Auth::logout();
+        return redirect('login');
     }
 }

@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Responsive Resume Template">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="{{ asset("image/favicon.svg") }}">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
-	<script defer src="../../public/assets/fontawesome/js/all.min.js"></script>
+	<script defer src="{{ asset("js/all.min.js") }}"></script>
 
     <link rel="stylesheet" href="{{ asset("css/pillar-1.css") }}">
 
@@ -39,8 +39,8 @@
 						    </div>
 						    <div class="secondary-info col-auto mt-2">
 							    <ul class="resume-social list-unstyled">
-					                <li class="mb-3"><a class="text-link" href="https://t.me/ddqqddqqdd" target="_blank"><span class="fa-container text-center me-2"><i class="fab fa-linkedin-in fa-fw"></i></span>telegram</a></li>
-					                <li class="mb-3"><a class="text-link" href="https://github.com/Bogdan-Andreevich" target="_blank"><span class="fa-container text-center me-2"><i class="fab fa-github-alt fa-fw"></i></span>github</a></li>
+					                <li class="mb-3"><a class="text-link" href="https://t.me/ddqqddqqdd" target="_blank"><span class="fa-container text-center me-2"><i class="fab fa-telegram fa-fw"></i></span>t.me/ddqqddqqdd</a></li>
+					                <li class="mb-3"><a class="text-link" href="https://github.com/Bogdan-Andreevich" target="_blank"><span class="fa-container text-center me-2"><i class="fab fa-github-alt fa-fw"></i></span>github.com/Bogdan-Andreevich</a></li>
 							    </ul>
 						    </div>
 					    </div>
