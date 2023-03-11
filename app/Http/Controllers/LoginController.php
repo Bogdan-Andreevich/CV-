@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,19 +20,15 @@ class LoginController extends Controller
 
     function store(Request $request) {
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:100',
-            'password' => 'required|string|min:6',
+        $request->validate([
+           'email' => ['required', 'string', 'email'],
+           'password' => ['required', 'string']
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        }
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
+           return redirect()->intended(RouteServiceProvider::HOME);
         }
 
         return back()->withErrors([

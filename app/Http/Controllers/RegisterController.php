@@ -31,7 +31,7 @@ class RegisterController extends Controller
                 'email' => 'A user with this email already exists.',
             ]);
         }
-        if (isset($validator)){
+//        if (isset($validator)){
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -42,6 +42,6 @@ class RegisterController extends Controller
 
             Auth::login($user);
             return redirect('/email/verify');
-        }
+//        }
     }
 }
